@@ -1,0 +1,35 @@
+{
+	"build_id": "8576784d3d3e438a16d5bc3a79b2323617aa2965a5956367f0e9815395c2f536",
+	"compiler": "inklecate 1.1.1",
+	"knots": [
+		"rodrigo_request",
+		"rodrigo_followup",
+		"rodrigo_refused",
+		"rodrigo_evening",
+		"rodrigo_carrying",
+		"rodrigo_delivered",
+		"rodrigo_menu",
+		"node_pass",
+		"node_fail",
+		"delivery_reply",
+		"delivery_afterwards",
+		"delivery_choices",
+		"decline_reply",
+		"ending_delivery",
+		"ending_refusal",
+		"herbalist_greeting",
+		"herbalist_menu",
+		"ambient_greeting",
+		"cabinet_entry",
+		"cabinet_menu"
+	],
+	"sources": {
+		"res://story/api.ink": "339f18300e33cbf3e0123f766571d9ed5ac7a097c1cd6b7e9b24c67f24bb0d35",
+		"res://story/dialogues/ambient.ink": "0ff216639670dc9e93c85ccb22e179e00598a0c15bc9050951acee3e4c4baebb",
+		"res://story/dialogues/herbalist.ink": "aed7d1112396ac9fa6fe8ac594918876fb85b80ddbc9cfb95d41ffe83a223785",
+		"res://story/interactions/herb_cabinet.ink": "4d029936b7b338297ddb2c649a63eac929eada832e88777fc2fb0daa8ec470ad",
+		"res://story/main.ink": "aa005739e1001388576fef917448a95c7ea36e698d0427d9c2f19461f5b6ddd1",
+		"res://story/quests/poppy_request.ink": "a7fb4865826d1e7c8106140e47a94a109f48648414a68616eded625a2b6479cd"
+	},
+	"story_id": "monastery"
+}

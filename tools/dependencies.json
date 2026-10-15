@@ -1,0 +1,12 @@
+{
+  "inkgd": {
+    "commit": "fea9098ee18d6cdbe9a5e25f8f0296bcdf0fd96a",
+    "source": "https://github.com/ephread/inkgd",
+    "branch": "godot4"
+  },
+  "inklecate": {
+    "version": "1.1.1",
+    "source": "https://github.com/inkle/ink/releases/download/v1.1.1/inklecate_windows.zip",
+    "sha256": "6f317cb4c59bf1b31c6dd61e80c6a2287a1d8c241a703f0586f736ae00871aab"
+  }
+}

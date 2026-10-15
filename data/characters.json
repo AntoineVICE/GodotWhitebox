@@ -1,0 +1,28 @@
+{
+  "player": {
+    "label": "金德日赫",
+    "kind": "player",
+    "portrait": ""
+  },
+  "narrator": {
+    "label": "旁白",
+    "kind": "narrator",
+    "portrait": ""
+  },
+  "npc_a": {
+    "label": "罗德里戈",
+    "kind": "npc",
+    "portrait": "",
+    "initial_affinity": 0,
+    "dialogue_id": "dialogue_a",
+    "color": "#859aaf"
+  },
+  "npc_b": {
+    "label": "马提亚斯修士",
+    "kind": "npc",
+    "portrait": "",
+    "initial_affinity": 0,
+    "dialogue_id": "dialogue_b",
+    "color": "#a393b1"
+  }
+}

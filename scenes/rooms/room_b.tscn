@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://scenes/interactable.tscn" id="1"]
+[sub_resource type="RectangleShape2D" id="Wall"]
+size = Vector2(32, 800)
+[sub_resource type="RectangleShape2D" id="Floor"]
+size = Vector2(1280, 40)
+[node name="room_b" type="Node2D"]
+[node name="Background" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 120, 1280, 120, 1280, 620, 0, 620)
+color = Color(0.18, 0.17, 0.20, 1)
+[node name="Floor" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 545, 1280, 545, 1280, 640, 0, 640)
+color = Color(0.25, 0.27, 0.3, 1)
+[node name="Boundaries" type="StaticBody2D" parent="."]
+[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(0, 360)
+shape = SubResource("Wall")
+[node name="Right" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1280, 360)
+shape = SubResource("Wall")
+[node name="Ground" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(640, 565)
+shape = SubResource("Floor")
+[node name="Markers" type="Node2D" parent="."]
+[node name="spawn_from_a" type="Marker2D" parent="Markers"]
+position = Vector2(200, 545)
+[node name="npc_center" type="Marker2D" parent="Markers"]
+position = Vector2(450, 545)
+[node name="npc_right" type="Marker2D" parent="Markers"]
+position = Vector2(720, 545)
+[node name="Actors" type="Node2D" parent="."]
+[node name="Objects" type="Node2D" parent="."]
+[node name="door_to_a" parent="Objects" instance=ExtResource("1")]
+position = Vector2(85, 545)
+interactable_id = "door_to_a"
+[node name="outcome_terminal" parent="Objects" instance=ExtResource("1")]
+position = Vector2(1060, 545)
+interactable_id = "outcome_terminal"

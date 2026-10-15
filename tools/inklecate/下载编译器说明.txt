@@ -1,0 +1,8 @@
+网页上传版不包含 inklecate.exe（约 56 MiB）。
+
+下载地址：
+https://github.com/inkle/ink/releases/download/v1.1.1/inklecate_windows.zip
+
+下载并解压后，把 inklecate.exe、ink_compiler.dll、ink-engine-runtime.dll 放在本文件所在目录。已有同名 DLL 时使用该官方压缩包中的版本即可。
+完整后，Godot F5 与 launch.ps1 才能正常编译 Ink。
+此操作不需要改动剧本或工程脚本。

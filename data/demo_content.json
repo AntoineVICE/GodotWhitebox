@@ -1,0 +1,337 @@
+{
+  "content_version": "ink-demo-v1",
+  "test_only": true,
+  "traits": {
+    "innovation": "革新",
+    "tradition": "守成",
+    "piety": "虔诚",
+    "secularity": "世俗",
+    "cruelty": "残酷",
+    "mercy": "慈悲"
+  },
+  "flags": {
+    "intro_done": "已经口头回应罗德里戈的请求",
+    "check_resolved": "已经追问罂粟的用途",
+    "check_passed": "罗德里戈说出了用罂粟麻醉自己的经历",
+    "promised_help": "口头答应帮忙",
+    "refused_help": "口头拒绝帮忙",
+    "poppy_taken": "已经从草药柜取过药",
+    "poppy_held": "药包现在带在身上",
+    "poppy_delivered": "药包已经实际交给罗德里戈",
+    "request_closed": "已经当面结束这桩差事",
+    "cabinet_searched": "已经找到柜底遮藏的药包",
+    "monk_warning_heard": "已听修士解释藏药的缘由"
+  },
+  "initial_state": {
+    "schema_version": 2,
+    "content_version": "ink-demo-v1",
+    "room_id": "room_a",
+    "spawn_id": "spawn_start",
+    "phase_id": "phase_a",
+    "traits": {
+      "innovation": 0,
+      "tradition": 0,
+      "piety": 0,
+      "secularity": 0,
+      "cruelty": 0,
+      "mercy": 0
+    },
+    "flags": {},
+    "clues": [],
+    "task_states": {
+      "task_a": "active"
+    },
+    "consumed_once_keys": [],
+    "selected_outcome": null,
+    "narrative": {
+      "story_id": "monastery",
+      "build_id": "",
+      "ink_state": "",
+      "result_text": "",
+      "state_hash": ""
+    }
+  },
+  "ui": {
+    "title": "一小包罂粟",
+    "subtitle": "修道院短篇 · Ink 剧本 · 测试数值",
+    "guide": "先去和罗德里戈说话。",
+    "clue_collected": "拾起了修士的移药字条。",
+    "result_title": "与罗德里戈告别",
+    "result_done": "这一桩差事结束了",
+    "debug_notice": "测试面板 · 所有数值与阈值仅供测试",
+    "idle_hint": "靠近人物或物件，按 E 交互",
+    "start_notice": "A / D 或 ← / → 移动 · E 交互 · Esc 关闭 · F3 调试",
+    "player_label": "金德日赫",
+    "objectives": [
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "request_closed",
+          "value": true
+        },
+        "text": "这桩差事已经结束。可以读取存档，或完整重置后尝试另一种做法。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_delivered",
+          "value": true
+        },
+        "text": "药已交给罗德里戈。继续和他说完最后几句，或稍后再来告别。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_held",
+          "value": true
+        },
+        "text": "药包在你身上。找到罗德里戈，按 E，再选择「把罂粟纸包交给他」。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "cabinet_searched",
+          "value": true
+        },
+        "text": "你已在草药柜底部找到藏起的罂粟。可以取走一包，再当面决定交不交给罗德里戈。"
+      },
+      {
+        "condition": {
+          "kind": "phase",
+          "id": "phase_b"
+        },
+        "text": "修士把罂粟藏了起来。到草药房最右侧检查草药柜，找到后可自行决定取不取。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "refused_help",
+          "value": true
+        },
+        "text": "你刚才拒绝了，但仍可改变主意。到右侧晚祷钟按 E，再去草药房取药。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "check_resolved",
+          "value": true
+        },
+        "text": "已问过罂粟的用途。到右侧晚祷钟按 E，之后可自行决定是否去取药。"
+      },
+      {
+        "condition": {
+          "all": [
+            {
+              "kind": "affinity",
+              "id": "npc_a",
+              "op": "gte",
+              "value": 20
+            },
+            {
+              "kind": "clue",
+              "id": "clue_a"
+            }
+          ]
+        },
+        "text": "可以拿字条追问罗德里戈，也可以直接到右侧晚祷钟按 E，再去草药房。"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "intro_done",
+          "value": true
+        },
+        "text": "可以拾起右侧字条追问实情；也可以到晚祷钟按 E，晚祷开始后去草药房。"
+      },
+      {
+        "condition": {},
+        "text": "金德日赫，罗德里戈在回廊里等你。走近他，按 E 听听他的请求。"
+      }
+    ],
+    "status_entries": [
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_delivered",
+          "value": true
+        },
+        "text": "药包：已交给罗德里戈"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_held",
+          "value": true
+        },
+        "text": "药包：随身携带，尚未交付"
+      },
+      {
+        "condition": {
+          "kind": "flag",
+          "id": "cabinet_searched",
+          "value": true
+        },
+        "text": "药包：已找到，尚未取走"
+      },
+      {
+        "condition": {},
+        "text": "药包：尚未取走"
+      }
+    ]
+  },
+  "rooms": {
+    "room_a": {
+      "label": "修道院回廊",
+      "scene": "res://scenes/rooms/room_a.tscn",
+      "default_spawn": "spawn_start",
+      "spawns": [
+        "spawn_start",
+        "spawn_from_b"
+      ]
+    },
+    "room_b": {
+      "label": "草药房",
+      "scene": "res://scenes/rooms/room_b.tscn",
+      "default_spawn": "spawn_from_a",
+      "spawns": [
+        "spawn_from_a"
+      ]
+    }
+  },
+  "interactables": {
+    "clue_object": {
+      "label": "移药字条",
+      "action": "collect_clue",
+      "target_id": "clue_a",
+      "color": "#c9b883",
+      "visible_if": {
+        "not": {
+          "kind": "clue",
+          "id": "clue_a"
+        }
+      }
+    },
+    "phase_switch": {
+      "label": "晚祷钟",
+      "action": "set_phase",
+      "target_id": "phase_b",
+      "color": "#8bab9c",
+      "available_if": {
+        "kind": "phase",
+        "id": "phase_a"
+      },
+      "unavailable_text": "晚祷已经开始了。",
+      "completed_text": "晚祷钟响了。罗德里戈去了草药房，在右侧等你。"
+    },
+    "door_to_b": {
+      "label": "草药房 →",
+      "action": "change_room",
+      "target_id": "room_b",
+      "spawn_id": "spawn_from_a",
+      "color": "#606b7a"
+    },
+    "door_to_a": {
+      "label": "← 回廊",
+      "action": "change_room",
+      "target_id": "room_a",
+      "spawn_id": "spawn_from_b",
+      "color": "#606b7a"
+    },
+    "outcome_terminal": {
+      "label": "草药柜",
+      "action": "dialogue",
+      "color": "#b4a995",
+      "available_if": {},
+      "target_id": "dialogue_cabinet"
+    }
+  },
+  "clues": {
+    "clue_a": {
+      "title": "修士的移药字条",
+      "description": "“罂粟另收，勿再交给罗德里戈。”落款是马提亚斯修士。"
+    }
+  },
+  "tasks": {
+    "task_a": {
+      "title": "罗德里戈的请求",
+      "description": "自行决定是否取走罂粟，再当面回应罗德里戈；最后告别才结束差事。",
+      "condition": {
+        "kind": "flag",
+        "id": "request_closed",
+        "value": true
+      }
+    }
+  },
+  "phases": {
+    "phase_a": {
+      "label": "晚祷前",
+      "npcs": {
+        "npc_a": {
+          "room_id": "room_a",
+          "marker_id": "npc_left"
+        },
+        "npc_b": {
+          "room_id": "room_b",
+          "marker_id": "npc_center"
+        }
+      }
+    },
+    "phase_b": {
+      "label": "晚祷时",
+      "npcs": {
+        "npc_a": {
+          "room_id": "room_b",
+          "marker_id": "npc_right"
+        },
+        "npc_b": {
+          "room_id": "room_b",
+          "marker_id": "npc_center"
+        }
+      }
+    }
+  },
+  "outcomes": {
+    "outcome_a": {
+      "title": "一桩隐瞒",
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": true
+          },
+          {
+            "kind": "flag",
+            "id": "request_closed",
+            "value": true
+          }
+        ]
+      }
+    },
+    "outcome_b": {
+      "title": "各自的选择",
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "id": "request_closed",
+            "value": true
+          }
+        ]
+      }
+    }
+  },
+  "characters_file": "res://data/characters.json",
+  "rules_file": "res://data/story_rules.json",
+  "story": {
+    "id": "monastery",
+    "source": "res://story/main.ink",
+    "compiled": "res://story/compiled/main.json",
+    "manifest": "res://story/compiled/manifest.json"
+  }
+}

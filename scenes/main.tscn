@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/world_controller.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/dialogue_runner.gd" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue_panel.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/ui/debug_panel.tscn" id="6"]
+[sub_resource type="SystemFont" id="Font"]
+font_names = PackedStringArray("Microsoft YaHei", "Noto Sans CJK SC", "sans-serif")
+[node name="Main" type="Node"]
+script = ExtResource("1")
+[node name="World" type="Node2D" parent="."]
+script = ExtResource("2")
+[node name="RoomRoot" type="Node2D" parent="World"]
+[node name="Player" parent="World" instance=ExtResource("3")]
+[node name="DialogueRunner" type="Node" parent="."]
+script = ExtResource("4")
+[node name="UI" type="CanvasLayer" parent="."]
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+[node name="InteractionHint" type="Label" parent="UI"]
+offset_left = 32.0
+offset_top = 642.0
+offset_right = 1248.0
+offset_bottom = 674.0
+theme_override_fonts/font = SubResource("Font")
+theme_override_font_sizes/font_size = 21
+mouse_filter = 2
+[node name="DialoguePanel" parent="UI" instance=ExtResource("5")]
+[node name="ResultPanel" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+[node name="DebugPanel" parent="UI" instance=ExtResource("6")]

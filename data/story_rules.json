@@ -1,0 +1,451 @@
+{
+  "conditions": {
+    "private_topic": {
+      "all": [
+        {
+          "kind": "affinity",
+          "id": "npc_a",
+          "op": "gte",
+          "value": 20
+        },
+        {
+          "kind": "clue",
+          "id": "clue_a"
+        }
+      ]
+    },
+    "intro_open": {
+      "all": [
+        {
+          "kind": "flag",
+          "id": "intro_done",
+          "value": false
+        },
+        {
+          "kind": "flag",
+          "id": "poppy_delivered",
+          "value": false
+        }
+      ]
+    },
+    "can_inquire": {
+      "all": [
+        {
+          "all": [
+            {
+              "kind": "affinity",
+              "id": "npc_a",
+              "op": "gte",
+              "value": 20
+            },
+            {
+              "kind": "clue",
+              "id": "clue_a"
+            }
+          ]
+        },
+        {
+          "kind": "flag",
+          "id": "check_resolved",
+          "value": false
+        }
+      ]
+    },
+    "can_end_request": {
+      "all": [
+        {
+          "kind": "phase",
+          "id": "phase_b"
+        },
+        {
+          "kind": "flag",
+          "id": "intro_done",
+          "value": true
+        },
+        {
+          "kind": "flag",
+          "id": "poppy_delivered",
+          "value": false
+        }
+      ]
+    },
+    "evening": {
+      "kind": "phase",
+      "id": "phase_b"
+    },
+    "has_note": {
+      "kind": "clue",
+      "id": "clue_a"
+    }
+  },
+  "checks": {
+    "ask_reason": {
+      "kind": "trait",
+      "id": "mercy",
+      "op": "gte",
+      "value": 20
+    }
+  },
+  "actions": {
+    "prepare_pass": {
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "intro_done",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": false
+          }
+        ]
+      },
+      "once_key": "npc_a_intro",
+      "effects": [
+        {
+          "type": "add_trait",
+          "id": "mercy",
+          "amount": 20
+        },
+        {
+          "type": "add_affinity",
+          "id": "npc_a",
+          "amount": 20
+        },
+        {
+          "type": "set_flag",
+          "id": "intro_done",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "promised_help",
+          "value": true
+        }
+      ]
+    },
+    "prepare_fail": {
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "intro_done",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": false
+          }
+        ]
+      },
+      "once_key": "npc_a_intro",
+      "effects": [
+        {
+          "type": "add_trait",
+          "id": "mercy",
+          "amount": 0
+        },
+        {
+          "type": "add_affinity",
+          "id": "npc_a",
+          "amount": 20
+        },
+        {
+          "type": "set_flag",
+          "id": "intro_done",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "promised_help",
+          "value": true
+        }
+      ]
+    },
+    "refuse_help": {
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "intro_done",
+            "value": false
+          },
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": false
+          }
+        ]
+      },
+      "once_key": "npc_a_intro",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "intro_done",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "refused_help",
+          "value": true
+        }
+      ]
+    },
+    "hand_over": {
+      "condition": {
+        "all": [
+          {
+            "kind": "flag",
+            "id": "poppy_held",
+            "value": true
+          },
+          {
+            "kind": "flag",
+            "id": "poppy_delivered",
+            "value": false
+          }
+        ]
+      },
+      "once_key": "npc_a_delivery",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "poppy_held",
+          "value": false
+        },
+        {
+          "type": "set_flag",
+          "id": "poppy_delivered",
+          "value": true
+        },
+        {
+          "type": "add_affinity",
+          "id": "npc_a",
+          "amount": 5
+        }
+      ]
+    },
+    "resolve_pass": {
+      "condition": {
+        "all": [
+          {
+            "kind": "affinity",
+            "id": "npc_a",
+            "op": "gte",
+            "value": 20
+          },
+          {
+            "kind": "clue",
+            "id": "clue_a"
+          }
+        ]
+      },
+      "once_key": "npc_a_private_check",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "check_resolved",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "check_passed",
+          "value": true
+        }
+      ]
+    },
+    "resolve_fail": {
+      "condition": {
+        "all": [
+          {
+            "kind": "affinity",
+            "id": "npc_a",
+            "op": "gte",
+            "value": 20
+          },
+          {
+            "kind": "clue",
+            "id": "clue_a"
+          }
+        ]
+      },
+      "once_key": "npc_a_private_check",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "check_resolved",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "check_passed",
+          "value": false
+        }
+      ]
+    },
+    "greet_b": {
+      "condition": {},
+      "once_key": "npc_b_greeting",
+      "effects": [
+        {
+          "type": "add_affinity",
+          "id": "npc_b",
+          "amount": 5
+        }
+      ]
+    },
+    "search_cabinet": {
+      "condition": {
+        "kind": "phase",
+        "id": "phase_b"
+      },
+      "once_key": "cabinet_searched",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "cabinet_searched",
+          "value": true
+        }
+      ]
+    },
+    "take_poppy": {
+      "condition": {
+        "all": [
+          {
+            "kind": "phase",
+            "id": "phase_b"
+          },
+          {
+            "kind": "flag",
+            "id": "cabinet_searched",
+            "value": true
+          }
+        ]
+      },
+      "once_key": "cabinet_poppy",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "poppy_taken",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "id": "poppy_held",
+          "value": true
+        }
+      ]
+    },
+    "monk_warning": {
+      "condition": {},
+      "once_key": "monk_warning",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "monk_warning_heard",
+          "value": true
+        }
+      ]
+    },
+    "finish_delivery": {
+      "condition": {
+        "kind": "flag",
+        "id": "poppy_delivered",
+        "value": true
+      },
+      "once_key": "request_settlement",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "request_closed",
+          "value": true
+        },
+        {
+          "type": "select_outcome",
+          "id": "outcome_a"
+        }
+      ]
+    },
+    "finish_refusal": {
+      "condition": {
+        "kind": "flag",
+        "id": "poppy_delivered",
+        "value": false
+      },
+      "once_key": "request_settlement",
+      "effects": [
+        {
+          "type": "set_flag",
+          "id": "request_closed",
+          "value": true
+        },
+        {
+          "type": "select_outcome",
+          "id": "outcome_b"
+        }
+      ]
+    }
+  },
+  "dialogue_routes": {
+    "dialogue_a": [
+      {
+        "entry": "rodrigo_delivered",
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_delivered",
+          "value": true
+        }
+      },
+      {
+        "entry": "rodrigo_carrying",
+        "condition": {
+          "kind": "flag",
+          "id": "poppy_held",
+          "value": true
+        }
+      },
+      {
+        "entry": "rodrigo_refused",
+        "condition": {
+          "kind": "flag",
+          "id": "refused_help",
+          "value": true
+        }
+      },
+      {
+        "entry": "rodrigo_evening",
+        "condition": {
+          "kind": "phase",
+          "id": "phase_b"
+        }
+      },
+      {
+        "entry": "rodrigo_followup",
+        "condition": {
+          "kind": "flag",
+          "id": "intro_done",
+          "value": true
+        }
+      },
+      {
+        "entry": "rodrigo_request",
+        "condition": {}
+      }
+    ],
+    "dialogue_b": [
+      {
+        "entry": "herbalist_greeting",
+        "condition": {}
+      }
+    ],
+    "dialogue_cabinet": [
+      {
+        "entry": "cabinet_entry",
+        "condition": {}
+      }
+    ]
+  }
+}
